@@ -1,0 +1,22 @@
+{
+  "name": "rutes-server",
+  "version": "1.0.0",
+  "description": "A server implementation for the RUTES system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kingsley Chubie Anyabuike",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource-mongodb": "^0.5.4",
+    "apollo-server-express": "^3.6.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-jwt": "^6.1.1",
+    "firebase": "^9.6.11",
+    "graphql": "^16.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.11"
+  }
+}
