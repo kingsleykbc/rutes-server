@@ -1,21 +1,19 @@
-// Import the functions you need from the SDKs you need
-
 const { initializeApp } = require('firebase/app');
 const { getAuth } = require('firebase/auth');
 const { getFirestore } = require('firebase/firestore');
 const { getFunctions } = require('firebase/functions');
 const { getStorage } = require('firebase/storage');
+require('dotenv').config();
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Setup firebase configuration
 const firebaseConfig = {
-	apiKey: 'AIzaSyDF8NAKkGT9aJeJ6dvZOOpddUSzjdXRyiY',
-	authDomain: 'mnwcw2.firebaseapp.com',
-	projectId: 'mnwcw2',
-	storageBucket: 'mnwcw2.appspot.com',
-	messagingSenderId: '243637791844',
-	appId: '1:243637791844:web:d16e96ed3b87413c05c371',
-	measurementId: 'G-KZRKH3PC8G'
+	apiKey: process.env.FIREBASE_API_KEY,
+	authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.FIREBASE_PROJECT_ID,
+	storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID,
+	appId: process.env.FIREBASE_APP_ID,
+	measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase

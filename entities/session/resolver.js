@@ -1,7 +1,7 @@
 const { ApolloError } = require('apollo-server-express');
 const Session = require('./model');
 const Project = require('../project/model');
-const { collection, orderBy, where, query, onSnapshot, doc, setDoc } = require('firebase/firestore');
+const { doc, setDoc } = require('firebase/firestore');
 const { db } = require('../../helpers/firebase');
 
 module.exports = {

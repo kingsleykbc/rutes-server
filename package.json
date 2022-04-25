@@ -11,6 +11,7 @@
   "dependencies": {
     "apollo-datasource-mongodb": "^0.5.4",
     "apollo-server-express": "^3.6.5",
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-jwt": "^6.1.1",

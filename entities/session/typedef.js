@@ -118,7 +118,7 @@ module.exports = gql`
 		session(id: ID, testerEmail: String, projectKey: String): Session
 	}
 
-	#MUTATIONS
+	# MUTATIONS
 	type Mutation {
 		createSession(sessionData: SessionData): Session
 		updateSession(id: ID!, projectKey: String!, sessionUpdateData: SessionUpdateData!): Session

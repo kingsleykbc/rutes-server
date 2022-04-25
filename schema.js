@@ -1,3 +1,6 @@
+/**
+ * COMBINE ALL THE TYPE DEFINITIONS AND RESOLVERS
+ */
 const { gql } = require('apollo-server-express');
 const adminTypeDef = require('./entities/admin/typedef');
 const adminResolver = require('./entities/admin/resolver');
@@ -13,5 +16,4 @@ const typeDef = gql`
 `;
 
 module.exports.typeDefs = [typeDef, adminTypeDef, authTypeDef, projectTypeDef, sessionTypeDef];
-
 module.exports.resolvers = [authResolver, adminResolver, projectResolver, sessionResolver];

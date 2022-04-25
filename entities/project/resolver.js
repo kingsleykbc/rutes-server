@@ -11,6 +11,9 @@ module.exports = {
 	},
 
 	Query: {
+		/**
+		 * GET ALL PROJECTS
+		 */
 		projects: async (parent, { keyword }, { user }) => {
 			const query = { adminID: user.sub };
 
@@ -22,12 +25,13 @@ module.exports = {
 					{ url: { $regex: keyword, $options: 'i' } }
 				];
 			}
-
 			const projects = await Project.find(query).sort({ createdAt: -1 });
 			return projects;
 		},
 
-		// Get single project
+		/**
+		 * GET SINGLE PROJECT
+		 */
 		project: async (parent, { projectKey }) => {
 			const project = await Project.findOne({ projectKey });
 			return project;
@@ -35,15 +39,17 @@ module.exports = {
 	},
 
 	Mutation: {
-		// Add new Project
+		/**
+		 * CREATE NEW PROJECT
+		 */
 		createProject: async (parent, { projectData }, { user }) => {
 			try {
 				// Create project
-				projectData.projectKey = generateCode(10);
+				projectData.projectKey = generateCode();
 				projectData.adminID = user.sub;
 				const project = await Project.create(projectData);
 
-				// Send email to testers
+				// TODO: Send email to testers
 
 				return project;
 			} catch (e) {
@@ -51,7 +57,9 @@ module.exports = {
 			}
 		},
 
-		// Update screenshots
+		/**
+		 * UPDATE SCREENSHOTS
+		 */
 		updateProjectScreenshot: async (parent, { projectKey, screenshot }, { user }) => {
 			try {
 				const updatedProject = await Project.findOneAndUpdate({ projectKey }, { $addToSet: { screenshots: screenshot } }, { new: true });
@@ -64,10 +72,13 @@ module.exports = {
 	}
 };
 
-// GENERATE CODE
-const generateCode = length => {
+/**
+ * RETURN CODE
+ * @returns {String} Generated code
+ */
+const generateCode = () => {
 	let result = '';
 	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-	for (let i = 0; i < length; i++) result += characters.charAt(Math.floor(Math.random() * characters.length));
+	for (let i = 0; i < 10; i++) result += characters.charAt(Math.floor(Math.random() * characters.length));
 	return result;
 };
