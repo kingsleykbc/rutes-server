@@ -1,6 +1,7 @@
 const Project = require('./model');
 const Session = require('../session/model');
 const { ApolloError } = require('apollo-server-express');
+const { sendMail } = require('../../helpers/email');
 
 module.exports = {
 	Project: {
@@ -49,10 +50,13 @@ module.exports = {
 				projectData.adminID = user.sub;
 				const project = await Project.create(projectData);
 
-				// TODO: Send email to testers
+				// Send emails to testers
+				const mailers = project.approvedTesters.map(email => sendMail(email, project.title, project.url));
+				Promise.all(mailers);
 
 				return project;
 			} catch (e) {
+				console.log('Error', e);
 				throw new ApolloError(e);
 			}
 		},

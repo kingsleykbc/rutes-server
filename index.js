@@ -4,6 +4,7 @@ const express = require('express');
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
 const http = require('http');
 const expressJwt = require('express-jwt');
+const { sendMail } = require('./helpers/email');
 
 // Initialize environment variables
 require('dotenv').config();

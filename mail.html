@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<style>
+		body {
+			border: 2px solid #ddd;
+			max-width: 500px;
+			margin: 20px auto;
+			padding: 30px;
+			text-align: center;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		p {
+			text-align: left;
+			line-height: 30px;
+		}
+		button {
+			background: #eb3f5b;
+			padding: 15px 30px;
+			border-radius: 5px;
+			border: none;
+			cursor: pointer;
+			color: #fff;
+			font-weight: bold;
+			font-size: 1rem;
+		}
+	</style>
+	<body>
+		<div class="heading">
+			<img
+				width="40px"
+				src="http://cdn.mcauto-images-production.sendgrid.net/8c11f6f0706ba20f/d606ae93-01ad-43e2-a4ee-2b72d9dfb28e/41x41.png"
+			/>
+		</div>
+		<h3>New Test Added</h3>
+		<p>
+			Hello,
+			<br />
+			You have been added as a tester for the {{projectTitle}} project.
+			<br />
+			To proceed with the test, please visit: <b>{{ projectURL }}</b> or click the button below
+		</p>
+		<a href="{{projectURL}}">
+			<button>Commence Test</button>
+		</a>
+	</body>
+</html>
