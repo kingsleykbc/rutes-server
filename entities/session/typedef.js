@@ -77,12 +77,25 @@ module.exports = gql`
 		updatedAt: Date
 	}
 
+	type Recording {
+		route: String
+		recording: String
+		createdAt: Date
+	}
+
+	input RecordingData {
+		route: String
+		recording: String
+		createdAt: Date
+	}
+
 	type Response {
 		annotations: [Annotation]
 		feedback: [Feedback]
 		completedTests: [String]
 		preQuestionnaireResponse: [QuestionnaireResponse]
 		postQuestionnaireResponse: [QuestionnaireResponse]
+		recordings: [Recording]
 	}
 
 	input ResponseData {
@@ -91,6 +104,7 @@ module.exports = gql`
 		completedTests: [String]
 		preQuestionnaireResponse: [QuestionnaireResponseData]
 		postQuestionnaireResponse: [QuestionnaireResponseData]
+		recordings: [RecordingData]
 	}
 
 	type Session {
@@ -126,6 +140,7 @@ module.exports = gql`
 		updateCompletedTests(id: ID!, route: String!): Session
 		updateQuestionnaireResponse(id: ID!, type: String!, answers: [QuestionnaireResponseData]!): Session
 		updateAnnotations(id: ID!, annotationID: ID, annotationData: AnnotationData): Session
+		updateRecordings(id: ID!, recording: RecordingData!): Session
 		updateProjectScreenshotFromSession(id: ID!, screenshot: ScreenshotData!): Session
 	}
 `;

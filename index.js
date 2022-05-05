@@ -4,7 +4,6 @@ const express = require('express');
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
 const http = require('http');
 const expressJwt = require('express-jwt');
-const { sendMail } = require('./helpers/email');
 
 // Initialize environment variables
 require('dotenv').config();
@@ -20,7 +19,11 @@ require('./helpers/initializeMongoDB');
 async function startApolloServer(typeDefs, resolvers) {
 	const app = express();
 
-	// Setup JWT middleware
+	/**
+	 * Setup JWT middleware
+	 *
+	 * @reference (Package) auth0 company (2022), express-jwt (v7.6.2)
+	 */
 	app.use(expressJwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'], credentialsRequired: false }));
 
 	// Initialize server

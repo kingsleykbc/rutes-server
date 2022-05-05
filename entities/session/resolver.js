@@ -27,7 +27,6 @@ module.exports = {
 		// Get single session
 		session: async (parent, { id, testerEmail, projectKey }) => {
 			try {
-				console.log('RAN HERE');
 				if (!(id || (testerEmail && projectKey))) throw Error('Invalid identifiers');
 
 				// If ID was passed, just return the session
@@ -113,11 +112,18 @@ module.exports = {
 		updateProjectScreenshotFromSession: async (parent, { id, screenshot }, { user }) => {
 			try {
 				const session = await Session.findOne({ _id: id });
-				const upd = await Project.findOneAndUpdate(
-					{ projectKey: session.projectKey },
-					{ $addToSet: { screenshots: screenshot } },
-					{ new: true }
-				);
+				await Project.updateOne({ projectKey: session.projectKey }, { $addToSet: { screenshots: screenshot } });
+				return session;
+			} catch (e) {
+				console.log(e.message);
+				throw new ApolloError(e);
+			}
+		},
+
+		// Update Recording
+		updateRecordings: async (parent, { id, recording }, { user }) => {
+			try {
+				const session = await Session.findOneAndUpdate({ _id: id }, { $addToSet: { 'response.recordings': recording } }, { new: true });
 				return session;
 			} catch (e) {
 				console.log(e.message);

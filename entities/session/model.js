@@ -32,6 +32,14 @@ const QuestionnaireResponseSchema = new Schema(
 	{ timestamps: true }
 );
 
+const RecordingSchema = new Schema(
+	{
+		route: String,
+		recording: String
+	},
+	{ timestamps: true }
+);
+
 // ===================================================================================================================
 //  MAIN
 // ===================================================================================================================
@@ -43,6 +51,7 @@ const sessionSchema = new Schema(
 			annotations: [AnnotationSchema],
 			feedback: [FeedbackSchema],
 			completedTests: [String],
+			recordings: [RecordingSchema],
 			preQuestionnaireResponse: [QuestionnaireResponseSchema],
 			postQuestionnaireResponse: [QuestionnaireResponseSchema]
 		},
