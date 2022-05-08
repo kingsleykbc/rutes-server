@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
  * @returns {String} - Hashed word
  */
 module.exports.encrypt = async word => {
-	const salt = await bcrypt.genSalt(10);
+	const salt = await bcrypt.genSalt(10); 
 	const hashedWord = await bcrypt.hash(word, salt);
 	return hashedWord;
 };
