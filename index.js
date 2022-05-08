@@ -31,6 +31,7 @@ async function startApolloServer(typeDefs, resolvers) {
 	const server = new ApolloServer({
 		typeDefs,
 		resolvers,
+		introspection: true,
 		context: ({ req }) => {
 			return { user: req.user || null };
 		},
